@@ -27,7 +27,7 @@ static mrb_value
 mrb_esp32_gpio_pin_mode(mrb_state *mrb, mrb_value self) {
   mrb_value pin, dir;
 
-  mrb_get_args(mrb, "oo", &pin, &dir);
+  mrb_get_args(mrb, "ii", &pin, &dir);
 
   if (!mrb_fixnum_p(pin) || !mrb_fixnum_p(dir)) {
     return mrb_nil_value();
@@ -55,7 +55,7 @@ static mrb_value
 mrb_esp32_gpio_digital_read(mrb_state *mrb, mrb_value self) {
   mrb_value pin;
 
-  mrb_get_args(mrb, "o", &pin);
+  mrb_get_args(mrb, "i", &pin);
 
   if (!mrb_fixnum_p(pin)) {
     return mrb_nil_value();
@@ -69,7 +69,7 @@ static mrb_value
 mrb_esp32_gpio_digital_write(mrb_state *mrb, mrb_value self) {
   mrb_value pin, level;
 
-  mrb_get_args(mrb, "oo", &pin, &level);
+  mrb_get_args(mrb, "ii", &pin, &level);
 
   if (!mrb_fixnum_p(pin) || !mrb_fixnum_p(level)) {
     return mrb_nil_value();
@@ -85,7 +85,7 @@ static mrb_value
 mrb_esp32_gpio_analog_read(mrb_state *mrb, mrb_value self) {
   mrb_value ch;
 
-  mrb_get_args(mrb, "o", &ch);
+  mrb_get_args(mrb, "i", &ch);
 
   if (!mrb_fixnum_p(ch)) {
     return mrb_nil_value();
@@ -121,7 +121,7 @@ static mrb_value
 mrb_esp32_gpio_analog_write(mrb_state *mrb, mrb_value self) {
   mrb_value ch, vol;
 
-  mrb_get_args(mrb, "oo", &ch, &vol);
+  mrb_get_args(mrb, "ii", &ch, &vol);
 
   if (!mrb_fixnum_p(ch) || !mrb_fixnum_p(vol)) {
     return mrb_nil_value();
@@ -317,14 +317,14 @@ mrb_mruby_esp32_gpio_gem_init(mrb_state* mrb) {
   mrb_define_const(mrb, constants, "LOW", mrb_fixnum_value(0));
   mrb_define_const(mrb, constants, "HIGH", mrb_fixnum_value(1));
 
-  mrb_define_const(mrb, constants, "GPIO_MODE_INPUT",                 mrb_fixnum_value(GPIO_MODE_INPUT));
-  mrb_define_const(mrb, constants, "GPIO_MODE_OUTPUT",                mrb_fixnum_value(GPIO_MODE_OUTPUT));
-  mrb_define_const(mrb, constants, "GPIO_MODE_INPUT_PULLUP",          mrb_fixnum_value(GPIO_MODE_INPUT_PULLUP));
-  mrb_define_const(mrb, constants, "GPIO_MODE_INPUT_PULLDOWN",        mrb_fixnum_value(GPIO_MODE_INPUT_PULLDOWN));
-  mrb_define_const(mrb, constants, "GPIO_MODE_INPUT_PULLUP_PULLDOWN", mrb_fixnum_value(GPIO_MODE_INPUT_PULLUP_PULLDOWN));
-  mrb_define_const(mrb, constants, "GPIO_MODE_INPUT_OUTPUT",          mrb_fixnum_value(GPIO_MODE_INPUT_OUTPUT));
-  mrb_define_const(mrb, constants, "GPIO_MODE_INPUT_OUTPUT_OD",       mrb_fixnum_value(GPIO_MODE_INPUT_OUTPUT_OD));
-  mrb_define_const(mrb, constants, "GPIO_MODE_OUTPUT_OD",             mrb_fixnum_value(GPIO_MODE_OUTPUT_OD));
+  define_const(GPIO_MODE_INPUT);
+  define_const(GPIO_MODE_OUTPUT);
+  define_const(GPIO_MODE_INPUT_PULLUP);
+  define_const(GPIO_MODE_INPUT_PULLDOWN);
+  define_const(GPIO_MODE_INPUT_PULLUP_PULLDOWN);
+  define_const(GPIO_MODE_INPUT_OUTPUT);
+  define_const(GPIO_MODE_INPUT_OUTPUT_OD);
+  define_const(GPIO_MODE_OUTPUT_OD);
 }
 
 void

@@ -2,6 +2,9 @@ module ESP32
   include Constants
   
   module GPIO
+    HIGH = ESP32::GPIO_HIGH
+    LOW  = ESP32::GPIO_LOW
+
     INPUT                 = ESP32::GPIO_MODE_INPUT
     OUTPUT                = ESP32::GPIO_MODE_OUTPUT
     INPUT_PULLUP          = ESP32::GPIO_MODE_INPUT_PULLUP
@@ -22,6 +25,9 @@ module ESP32
         input_output_od:        ESP32::GPIO_MODE_INPUT_OUTPUT_OD,
         output_od:              ESP32::GPIO_MODE_OUTPUT_OD,
       }
+
+      HIGH = ESP32::GPIO_HIGH
+      LOW  = ESP32::GPIO_LOW
 
       attr_reader :pin
       def initialize pin, mode = :input
